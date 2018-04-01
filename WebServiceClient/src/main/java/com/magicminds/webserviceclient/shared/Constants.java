@@ -19,6 +19,8 @@ public class Constants {
     public static final String MovieDetail = "3/movie/{movie_id}";
     public static final String MovieDetailFullPath = "&language=en-US";
 
+    public static final String MovieImage = "https://image.tmdb.org/t/p/w200";
+
 
     public enum CallBackType {
         DISCOVER_MOVIE,
