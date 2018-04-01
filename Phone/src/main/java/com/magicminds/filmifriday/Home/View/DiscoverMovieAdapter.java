@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.magicminds.filmifriday.R;
 import com.magicminds.webserviceclient.models.discover.Result;
+import com.magicminds.webserviceclient.shared.Constants;
+import com.squareup.picasso.Picasso;
 
 import java.util.AbstractList;
 import java.util.ArrayList;
@@ -24,9 +26,12 @@ import java.util.List;
 public class DiscoverMovieAdapter extends ArrayAdapter<List<Result>> {
 
     private List<Result> mData = new ArrayList<>();
+    private Context context;
 
     public DiscoverMovieAdapter(Context context, int resource) {
         super(context, resource);
+
+        this.context = context;
     }
 
     @Override
@@ -51,10 +56,11 @@ public class DiscoverMovieAdapter extends ArrayAdapter<List<Result>> {
         }
 
         if(movie != null){
-            //holder.movieImage
+            String img_url = Constants.MovieImage+movie.posterPath;
+            Picasso.with(context).load(img_url).into(holder.movieImage);
             holder.movieName.setText(movie.title);
             holder.movieShortDescription.setText(movie.overview);
-            holder.movieRating.setText(movie.releaseDate);
+            holder.movieRating.setText(movie.voteAverage+"");
         }
 
         return convertView;
